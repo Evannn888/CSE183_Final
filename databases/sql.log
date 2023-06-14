@@ -1,0 +1,225 @@
+timestamp: 2023-06-14T05:38:02.473244
+CREATE TABLE "py4web_session"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "rkey" CHAR(512),
+    "rvalue" TEXT,
+    "expiration" INTEGER,
+    "created_on" TIMESTAMP,
+    "expires_on" TIMESTAMP
+);
+success!
+timestamp: 2023-06-14T05:38:02.474927
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "username" CHAR(512) UNIQUE,
+    "email" CHAR(512) UNIQUE,
+    "password" CHAR(512),
+    "first_name" CHAR(512),
+    "last_name" CHAR(512),
+    "sso_id" CHAR(512),
+    "action_token" CHAR(512),
+    "last_password_change" TIMESTAMP,
+    "past_passwords_hash" TEXT
+);
+success!
+timestamp: 2023-06-14T05:38:02.475999
+CREATE TABLE "auth_user_tag_groups"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tagpath" CHAR(512),
+    "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
+);
+success!
+timestamp: 2023-06-14T05:40:06.091482
+CREATE TABLE "story"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "title" CHAR(512),
+    "body" TEXT,
+    "photos" CHAR(512),
+    "location" CHAR(512),
+    "radius" INTEGER
+);
+success!
+timestamp: 2023-06-14T05:50:21.327058
+CREATE TABLE "vote"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "story_id" INTEGER REFERENCES "story" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "vote" INTEGER
+);
+success!
+timestamp: 2023-06-14T06:15:36.384590
+ALTER TABLE "story" ADD "votes" INTEGER;
+success!
+timestamp: 2023-06-14T06:15:36.388302
+CREATE TABLE "payment"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "story_id" INTEGER REFERENCES "story" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "amount" DOUBLE
+);
+success!
+success!
+timestamp: 2023-06-14T13:21:40.774582
+ALTER TABLE "story" ADD "radius_of_interest" CHAR(512);
+timestamp: 2023-06-14T13:21:40.776216
+ALTER TABLE "story" ADD "user_email" CHAR(512);
+timestamp: 2023-06-14T13:21:40.777271
+ALTER TABLE "story" ADD "username" CHAR(512);
+timestamp: 2023-06-14T13:21:40.778640
+ALTER TABLE "story" ADD "post_time" TIMESTAMP;
+success!
+timestamp: 2023-06-14T13:21:40.783694
+ALTER TABLE "vote" ADD "voter" CHAR(512);
+success!
+timestamp: 2023-06-14T13:21:40.787085
+ALTER TABLE "payment" ADD "payer" CHAR(512);
+success!
+success!
+success!
+timestamp: 2023-06-14T13:27:42.514360
+ALTER TABLE "story" ADD "created_by" CHAR(512);
+timestamp: 2023-06-14T13:27:42.515966
+ALTER TABLE "story" ADD "created_on" TIMESTAMP;
+success!
+timestamp: 2023-06-14T13:27:42.525730
+ALTER TABLE "payment" ADD "user_email" CHAR(512);
+timestamp: 2023-06-14T13:27:42.528355
+ALTER TABLE "payment" ADD "timestamp" TIMESTAMP;
+success!
+timestamp: 2023-06-14T13:32:26.909042
+ALTER TABLE "story" ADD "photo" CHAR(512);
+timestamp: 2023-06-14T13:32:26.911607
+ALTER TABLE "story" ADD "created_at" TIMESTAMP;
+success!
+timestamp: 2023-06-14T13:37:27.659347
+ALTER TABLE "story" ADD "submitted_by" CHAR(512);
+timestamp: 2023-06-14T13:37:27.660125
+ALTER TABLE "story" ADD "submitted_on" TIMESTAMP;
+timestamp: 2023-06-14T13:37:27.660865
+ALTER TABLE "story" ADD "spam" CHAR(1);
+success!
+timestamp: 2023-06-14T13:42:44.930386
+ALTER TABLE "story" ADD "submitted_at" TIMESTAMP;
+success!
+success!
+success!
+success!
+success!
+timestamp: 2023-06-14T13:58:50.884210
+ALTER TABLE "vote" ADD "story" INTEGER REFERENCES "story" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+timestamp: 2023-06-14T13:58:50.885676
+ALTER TABLE "vote" ADD "user" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+timestamp: 2023-06-14T13:58:50.886707
+ALTER TABLE "vote" ADD "value" INTEGER;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2023-06-14T14:11:48.554377
+CREATE TABLE "read"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "story" INTEGER REFERENCES "story" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "user" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "payment" DOUBLE
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2023-06-14T15:23:10.199225
+ALTER TABLE "story" ADD "upvotes" INTEGER;
+timestamp: 2023-06-14T15:23:10.201345
+ALTER TABLE "story" ADD "downvotes" INTEGER;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
