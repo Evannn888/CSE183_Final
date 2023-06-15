@@ -74,6 +74,9 @@ def vote():
     if existing_vote:
         existing_vote.update_record(value=value)
     else:
+        print("Story ID:", story_id)
+        print("User:", user)
+
         db.vote.insert(story=story_id, user=user, value=value)
 
     query = (db.vote.story == db.story.id) & (db.vote.value == 1) & (db.vote.story == story_id)
