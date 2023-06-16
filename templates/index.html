@@ -53,6 +53,9 @@
                 <div class="media-content">
                   <p class="title is-4">{{ story.title }}</p>
                   <p class="subtitle is-6">{{ story.created_by }}</p>
+                  <div v-for="photo in story.photos" :key="photo">
+                    <img :src="photo" alt="Story Photo" style="max-width: 100%;">
+                  </div>
                 </div>
               </div>
               <div class="content">
